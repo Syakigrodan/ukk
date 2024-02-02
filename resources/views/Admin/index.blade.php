@@ -330,13 +330,13 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="exampleInputNamaPegawai">Nama Pegawai</label>
-                                                        <input type="text" class="form-control" id="namapegawai"
-                                                            placeholder="Nama Pegawai" name="nama_pegawai">
+                                                        <input type="text" class="form-control" id="name"
+                                                            placeholder="Nama Pegawai" name="name">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputUsername">Username</label>
-                                                        <input type="text" class="form-control" id="username"
-                                                            placeholder="username" name="username">
+                                                        <label for="exampleInputUsername">email</label>
+                                                        <input type="text" class="form-control" id="email"
+                                                            placeholder="email" name="email">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword">Password</label>

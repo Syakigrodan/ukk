@@ -62,8 +62,21 @@ class Admin extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $item = User::findOrFail($id);
+            $item->delete();
+
+            return redirect()->route('admin')->with('success', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('admin')->with('error', 'Gagal menghapus data. Silakan coba lagi.');
+        }
     }
     public function TambahPegawai(Request $request)
     {
+        $dataUser = $request->all();
+
+        User::create($dataUser);
+
+        return redirect()->route('admin');
     }
 }
