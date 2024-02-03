@@ -104,7 +104,7 @@
 
 
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="formuserlogin">
+                    <a class="nav-link" href="{{ route('admin') }}">
                         <span class="menu-icon">
                             <i class="mdi mdi-account-circle"></i>
                         </span>
@@ -233,11 +233,90 @@
                                                             <a href=""
                                                                 class="btn btn-outline-warning btn-icon-text"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModalEdit">
+                                                                data-bs-target="#exampleModalEdit{{ $user->id }}">
                                                                 <i class="fas fa-trash"></i> Edit
                                                             </a>
                                                         </td>
                                                     </tr>
+                                                    {{-- modal edit --}}
+                                                    <div class="modal fade" id="exampleModalEdit{{ $user->id }}"
+                                                        tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel{{ $user->id }}"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5"
+                                                                        id="exampleModalLabel{{ $user->id }}">
+                                                                        Form Edit Data</h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="modal-body">
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <form class="forms-sample"
+                                                                                    action="/admin/edit/{{ $user->id }}"
+                                                                                    method="post">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputNamaPegawai">Nama
+                                                                                            Pegawai</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="name"
+                                                                                            placeholder="Nama Pegawai"
+                                                                                            name="name"
+                                                                                            value="{{ $user->name }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputUsername">Username</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="email"
+                                                                                            placeholder="username"
+                                                                                            name="email"
+                                                                                            value="{{ $user->email }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputPassword">Password</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="password"
+                                                                                            placeholder="Password"
+                                                                                            name="password"
+                                                                                            value="{{ $user->password }}">
+                                                                                    </div>
+                                                                                    {{-- <div class="form-group">
+                                                        <label for="exampleInputjabatan">Jabatan</label>
+                                                        <input type="text" class="form-control" id="jabatan"
+                                                            placeholder="jabatan" name="jabatan"
+                                                            value="{{ $user->jabatan }}">
+                                                    </div> --}}
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button"
+                                                                                            class="btn btn-secondary"
+                                                                                            data-bs-dismiss="modal">Close</button>
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-primary">Edit</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{-- end modal edit --}}
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -245,73 +324,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- modal edit --}}
-                        <div class="modal fade" id="exampleModalEdit" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Form Edit Data</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-body">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <form class="forms-sample"
-                                                        action="{{ route('admin.edit', $user->id) }}" method="post">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <fieldset disabled>
-                                                            <div class="form-group">
-                                                                <label for="disabledTextInput">Id</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="id" name="id"
-                                                                    value="{{ $user->id }}">
-                                                            </div>
-                                                        </fieldset>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputNamaPegawai">Nama
-                                                                Pegawai</label>
-                                                            <input type="text" class="form-control"
-                                                                id="namapegawai" placeholder="Nama Pegawai"
-                                                                name="nama_pegawai" value="{{ $user->name }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputUsername">Username</label>
-                                                            <input type="text" class="form-control" id="username"
-                                                                placeholder="username" name="username"
-                                                                value="{{ $user->email }}">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputPassword">Password</label>
-                                                            <input type="text" class="form-control" id="password"
-                                                                placeholder="Password" name="password"
-                                                                value="{{ $user->password }}">
-                                                        </div>
-                                                        {{-- <div class="form-group">
-                                                            <label for="exampleInputjabatan">Jabatan</label>
-                                                            <input type="text" class="form-control" id="jabatan"
-                                                                placeholder="jabatan" name="jabatan"
-                                                                value="{{ $user->jabatan }}">
-                                                        </div> --}}
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Edit</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        {{-- end modal edit --}}
                         {{-- modal tambah --}}
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">

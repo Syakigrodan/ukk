@@ -29,6 +29,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route admin
 Route::get('/tableadmin', [Admin::class, 'index'])->name('admin');
 Route::get('/admin/delete/{id}', [Admin::class, 'destroy'])->name('admin.delete');
-Route::get('logpegawai', [Admin::class, 'show']);
+Route::get('logpegawai', [Admin::class, 'show'])->name('logpegawai');
 Route::post('/Admin/tambahData', [Admin::class, 'TambahPegawai'])->name('admin.tambahPegawai');
 Route::put('/admin/edit/{id}', [Admin::class, 'update'])->name('admin.edit');

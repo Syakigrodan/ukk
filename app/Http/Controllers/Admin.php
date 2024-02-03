@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Admin extends Controller
 {
@@ -38,7 +39,8 @@ class Admin extends Controller
      */
     public function show()
     {
-        return view('Admin.logpegawai');
+        $dataUser = User::all();
+        return view('admin.logpegawai', ['dataUser' => $dataUser]);
     }
 
     /**
@@ -46,7 +48,6 @@ class Admin extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**
@@ -54,7 +55,13 @@ class Admin extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dataUser = User::find($id);
+
+
+        $dataUser->update($request->all());
+
+
+        return redirect()->route('admin');
     }
 
     /**

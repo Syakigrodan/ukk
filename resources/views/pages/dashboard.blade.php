@@ -111,7 +111,7 @@
 
 
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="logpegawai">
+                    <a class="nav-link" href="{{ route('logpegawai') }}">
                         <span class="menu-icon">
                             <i class="mdi mdi-file-document-box"></i>
                         </span>
@@ -155,7 +155,7 @@
                                 <div class="dropdown-divider"></div>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a class="dropdown-item preview-item" href="{{ route('logout') }}">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-logout text-danger"></i>
